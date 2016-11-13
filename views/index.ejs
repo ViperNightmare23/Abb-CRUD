@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+
+<p> Clientes existentes: </p>
+<ul class="clientes">
+  <% for(var i=0; i<clientes.length; i++) {%>
+    <li class="cliente">
+      <span><%= clientes[i].Nombre %> <a href="/cambiar_cliente/<%= clientes[i]._id %>"> editar </a></span>
+    </li>
+  <% } %>
+</ul>
+
+<p> Agregar Cliente: </p>
+<form action="/clientes" method="POST">
+  <input type="text" placeholder="Nombre Cliente" name="Nombre">
+  <button type="Agregar Cliente">Submit</button>
+
+<!--   <div>
+  <h2>Delete An User</h2>
+  <input type="text" placeholder="Nuevo Nombre Cliente Delete" name="Nombre Nuevo Delete" id="nuevonamedelete">
+  <button id="delete"> Eliminar </button>
+  </div> -->
+
+</form>
+<script src="main.js"></script>
+</body>
+</html>

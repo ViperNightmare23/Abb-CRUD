@@ -1,0 +1,37 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+
+<form action="/clientes" method="POST">
+  <div>
+  <h2>Cambiar nombre del cliente</h2>
+<!-- <select name="selectpicker" class="selectpicker">
+<ul class="clientes">
+  <% for(var i=0; i<clientes.length; i++) {%>
+    <li class="cliente">
+      <option><%= clientes[i].Nombre %></option>
+    </li>
+  <% } %>
+</ul>
+</select> -->
+<input type="text" placeholder="Nuevo Nombre Cliente" name="Nombre Nuevo" id="nuevoname">
+<button id="update"> Cambiar </button>
+</div>
+
+</form>
+<script src="main.js"></script>
+</body>
+</html>
+
+<script>
+  var url = window.location.href;
+  var captured = /search=([^&]+)/.exec(url)[1];
+
+  document.getElementById('vari').value = captured;
+</script>

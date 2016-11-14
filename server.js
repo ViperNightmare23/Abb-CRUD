@@ -41,12 +41,6 @@ app.get('/productos', (req, res) => {
     res.render('productos.ejs', {productos: result})
   })
 })
-app.get('/productos', (req, res) => {
-  db.collection('status').find().toArray((err, result) => {
-    if (err) return console.log(err)
-    res.render('productos.ejs', {status: result})
-  })
-})
 
 app.get('/cambiar_estado', (req, res) => {
   db.collection('productos').find().toArray((err, result) => {
@@ -103,9 +97,9 @@ app.post('/cambiar_estado', (req, res) => {
   nombrenuevos=req.body.nuevoestado
   console.log(req.body)
   db.collection('productos').findOneAndUpdate(
-    { Nombre: nombreactuals }, {
+    { Estado: nombreactuals }, {
     $set: {
-      Nombre: nombrenuevos,
+      Estado: nombrenuevos,
     }
   }, {
     sort: {_id: -1},

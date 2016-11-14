@@ -10,7 +10,7 @@
 <ul class="clientes">
   <% for(var i=0; i<productos.length; i++) {%>
     <li class="producto">
-      <span><%= productos[i].Nombre %> &emsp; - &emsp; <%= productos[i].Estado %> <a href="/cambiar_estado?&<%= productos[i].Nombre %>"> editar </a></span>
+      <span><%= productos[i].Nombre %> &emsp; - &emsp; <%= productos[i].Estado %> <a href="/cambiar_estado?&<%= productos[i].Estado %>"> editar </a></span>
     </li>
   <% } %>
 </ul>
@@ -19,15 +19,7 @@
 <form action="/productos" method="POST">
   <input type="text" placeholder="Nombre Producto" name="Nombre">
 
-<!--   <select name="selectpicker" class="selectpicker">
-    <ul class="status">
-      <% for(var i=0; i<status.length; i++) {%>
-        <li class="estado">
-          <option><%= status[i].Status %></option>
-        </li>
-      <% } %>
-    </ul>
-</select> -->
+
 
   <input type="text" placeholder="Estado del Producto" name="Estado">
   <button type="Agregar Producto">Submit</button>

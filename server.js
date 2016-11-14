@@ -35,8 +35,30 @@ app.get('/cambiar_cliente', (req, res) => {
   })
 })
 
+app.get('/productos', (req, res) => {
+  db.collection('productos').find().toArray((err, result) => {
+    if (err) return console.log(err)
+    res.render('productos.ejs', {productos: result})
+  })
+})
+app.get('/productos', (req, res) => {
+  db.collection('status').find().toArray((err, result) => {
+    if (err) return console.log(err)
+    res.render('productos.ejs', {status: result})
+  })
+})
+
+app.get('/cambiar_estado', (req, res) => {
+  db.collection('productos').find().toArray((err, result) => {
+    if (err) return console.log(err)
+    res.render('cambiar_estado.ejs', {productos: result})
+  })
+})
+
 var nombreactual='';
 var nombrenuevo='';
+var nombreactuals='';
+var nombrenuevos='';
 
 app.post('/clientes', (req, res) => {
   db.collection('clientes').save(req.body, (err, result) => {
@@ -44,6 +66,16 @@ app.post('/clientes', (req, res) => {
 
     console.log('saved to database')
     res.redirect('/')
+  })
+  console.log("nombre en post " + nombreactual)
+})
+
+app.post('/productos', (req, res) => {
+  db.collection('productos').save(req.body, (err, result) => {
+    if (err) return console.log(err)
+
+    console.log('saved to database')
+    res.redirect('/productos')
   })
   console.log("nombre en post " + nombreactual)
 })
@@ -56,6 +88,24 @@ app.post('/cambiar_cliente', (req, res) => {
   	{ Nombre: nombreactual }, {
     $set: {
       Nombre: nombrenuevo,
+    }
+  }, {
+    sort: {_id: -1},
+    upsert: true
+  }, (err, result) => {
+    if (err) return res.send(err)
+    res.send(result)
+  })
+})
+
+app.post('/cambiar_estado', (req, res) => {
+  nombreactuals=req.body.varis
+  nombrenuevos=req.body.nuevoestado
+  console.log(req.body)
+  db.collection('productos').findOneAndUpdate(
+    { Nombre: nombreactuals }, {
+    $set: {
+      Nombre: nombrenuevos,
     }
   }, {
     sort: {_id: -1},

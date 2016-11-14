@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+
+<form action="/cambiar_estado" method="POST">
+  <div>
+  <h2>Cambiar estado del producto</h2>
+
+<input type="text" placeholder="Nuevo Estado" name="nuevoestado" id="nuevoestado">
+<input type="hidden" id="varis" name="varis">
+<button id="updateEstado"> Cambiar </button>
+</div>
+<br><a href="/productos">Regresar</a>
+</form>
+<script src="main.js"></script>
+</body>
+</html>
+
+<script>
+  var url = window.location.href;
+  var captured = /&([^&]+)/.exec(url)[1];
+
+  document.getElementById('varis').value = captured;
+</script>

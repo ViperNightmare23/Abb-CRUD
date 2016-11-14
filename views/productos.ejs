@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+
+<p> Productos existentes: </p>
+<ul class="clientes">
+  <% for(var i=0; i<productos.length; i++) {%>
+    <li class="producto">
+      <span><%= productos[i].Nombre %> &emsp; - &emsp; <%= productos[i].Estado %> <a href="/cambiar_estado?&<%= productos[i].Nombre %>"> editar </a></span>
+    </li>
+  <% } %>
+</ul>
+
+<p> Agregar Producto: </p>
+<form action="/productos" method="POST">
+  <input type="text" placeholder="Nombre Producto" name="Nombre">
+
+<!--   <select name="selectpicker" class="selectpicker">
+    <ul class="status">
+      <% for(var i=0; i<status.length; i++) {%>
+        <li class="estado">
+          <option><%= status[i].Status %></option>
+        </li>
+      <% } %>
+    </ul>
+</select> -->
+
+  <input type="text" placeholder="Estado del Producto" name="Estado">
+  <button type="Agregar Producto">Submit</button>
+
+<!--   <div>
+  <h2>Delete An User</h2>
+  <input type="text" placeholder="Nuevo Nombre Cliente Delete" name="Nombre Nuevo Delete" id="nuevonamedelete">
+  <button id="delete"> Eliminar </button>
+  </div> -->
+
+</form>
+<script src="main.js"></script>
+</body>
+</html>

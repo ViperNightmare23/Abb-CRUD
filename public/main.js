@@ -34,3 +34,20 @@ var nuevoname = document.getElementById("nuevoname").value;
     window.location.reload()
   })
 })
+
+updateEstado.addEventListener('click', function () {
+var nuevoname = document.getElementById("nuevoname").value;
+  fetch('status', {
+    method: 'put',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      'Nombre': nuevoname,
+    })
+  })
+  .then(response => {
+    if (response.ok) return response.json()
+  })
+  .then(data => {
+    console.log(data)
+  })
+})

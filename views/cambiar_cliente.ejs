@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +6,7 @@
 </head>
 <body>
 
-<form action="/clientes" method="POST">
+<form action="/cambiar_cliente" method="POST">
   <div>
   <h2>Cambiar nombre del cliente</h2>
 <!-- <select name="selectpicker" class="selectpicker">
@@ -20,7 +18,8 @@
   <% } %>
 </ul>
 </select> -->
-<input type="text" placeholder="Nuevo Nombre Cliente" name="Nombre Nuevo" id="nuevoname">
+<input type="text" placeholder="Nuevo Nombre Cliente" name="nuevoname" id="nuevoname">
+<input type="hidden" id="vari" name="vari">
 <button id="update"> Cambiar </button>
 </div>
 
@@ -31,7 +30,7 @@
 
 <script>
   var url = window.location.href;
-  var captured = /search=([^&]+)/.exec(url)[1];
+  var captured = /&([^&]+)/.exec(url)[1];
 
   document.getElementById('vari').value = captured;
 </script>

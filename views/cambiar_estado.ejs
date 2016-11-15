@@ -10,7 +10,11 @@
   <div>
   <h2>Cambiar estado del producto</h2>
 
-<input type="text" placeholder="Nuevo Estado" name="nuevoestado" id="nuevoestado">
+<select name="nuevoestado" id="nuevoestado">
+  <% for(var i=0; i<status.length; i++) {%>
+      <option><%= status[i].Status %></option>
+  <% } %>
+</select>
 <input type="hidden" id="varis" name="varis">
 <button id="updateEstado"> Cambiar </button>
 </div>

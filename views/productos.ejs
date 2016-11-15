@@ -10,19 +10,23 @@
 <ul class="clientes">
   <% for(var i=0; i<productos.length; i++) {%>
     <li class="producto">
-      <span><%= productos[i].Nombre %> &emsp; - &emsp; <%= productos[i].Estado %> <a href="/cambiar_estado?&<%= productos[i]._id %>"> editar </a></span>
+      <span><%= productos[i].Nombre %> - <%= productos[i].Estado %> <a href="/cambiar_estado?&<%= productos[i]._id %>"> editar </a></span>
     </li>
   <% } %>
 </ul>
+
 
 <p> Agregar Producto: </p>
 <form action="/productos" method="POST">
   <input type="text" placeholder="Nombre Producto" name="Nombre">
 
 
-
-  <input type="text" placeholder="Estado del Producto" name="Estado">
-  <button type="Agregar Producto">Submit</button>
+  <select name="Estado">
+  <% for(var i=0; i<status.length; i++) {%>
+      <option><%= status[i].Status %></option>
+  <% } %>
+</select>
+  <button type="Agregar Producto">Agregar</button>
 
 <!--   <div>
   <h2>Delete An User</h2>
@@ -31,6 +35,12 @@
   </div> -->
 
 </form>
+<br><br>
+<div w3-include-html="/qrsht"></div>
+<script src="http://www.w3schools.com/lib/w3data.js"></script>
+<script>
+w3IncludeHTML();
+</script>
 <script src="main.js"></script>
 </body>
 </html>

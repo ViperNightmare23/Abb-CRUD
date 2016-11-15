@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>[<br>
+<% for(var i=0; i<status.length; i++) {%>
+  <% if (i == status.length -1) {%>
+    <span>{
+          "_id": {
+              "$oid": "<%= status[i]._id %>"
+          },
+          "Status": "<%= status[i].Status %>",
+          "Description": "<%= status[i].Description %>"
+      }</span><br>
+  <% } else {%>
+      <span>{
+          "_id": {
+              "$oid": "<%= status[i]._id %>"
+          },
+          "Status": "<%= status[i].Status %>",
+          "Description": "<%= status[i].Description %>"
+      },</span><br>
+
+  <% } %>
+<% } %>
+  ]<br>
+</form>
+<script src="main.js"></script>
+</body>
+</html>

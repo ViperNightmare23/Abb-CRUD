@@ -5,6 +5,8 @@ const bodyParser= require('body-parser')
 const app = express()
 var ObjectId = require('mongodb').ObjectID;
 
+var request = require('request');
+
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -36,18 +38,72 @@ app.get('/cambiar_cliente', (req, res) => {
   })
 })
 
+// app.get('/productos', (req, res) => {
+//   db.collection('productos').find().toArray((err, result) => {
+//     if (err) return console.log(err)
+//     res.render('productos.ejs', {productos: result})
+//   })
+//   // request('/estados', function (error, response, body) {
+//   // if (!error && response.statusCode == 200) {
+//   //   console.log(body) // Show the HTML for the Google homepage. 
+//   // }
+// // })
+// })
+var productos = [];
+var status = [];
 app.get('/productos', (req, res) => {
   db.collection('productos').find().toArray((err, result) => {
-    if (err) return console.log(err)
-    res.render('productos.ejs', {productos: result})
+    if (err){
+      return console.log(err)
+    }else{
+      for (var i = 0 ; i < result.length; i++) {
+        productos[i] = result[i];
+      }
+    }
   })
+    db.collection('status').find().toArray((err, result) => {
+    if (err){
+      return console.log(err)
+    }else{
+      for (var i = 0 ; i < result.length; i++) {
+        status[i] = result[i];
+      }
+    }
+  })
+  res.render('productos.ejs', {productos: productos,status: status})
 })
 
 app.get('/cambiar_estado', (req, res) => {
-  db.collection('productos').find().toArray((err, result) => {
-    if (err) return console.log(err)
-    res.render('cambiar_estado.ejs', {productos: result})
+   db.collection('productos').find().toArray((err, result) => {
+    if (err){
+      return console.log(err)
+    }else{
+      for (var i = 0 ; i < result.length; i++) {
+        productos[i] = result[i];
+      }
+    }
   })
+    db.collection('status').find().toArray((err, result) => {
+    if (err){
+      return console.log(err)
+    }else{
+      for (var i = 0 ; i < result.length; i++) {
+        status[i] = result[i];
+      }
+    }
+  })
+  res.render('cambiar_estado.ejs', {productos: productos,status: status})
+})
+
+app.get('/estados', (req, res) => {
+  db.collection('status').find().toArray((err, result) => {
+    if (err) return console.log(err)
+    res.render('estados.ejs', {status: result})
+  })
+})
+
+app.get('/qrsht', (req, res) => {
+   res.sendFile(__dirname + '/index.html')
 })
 
 var nombreactual='';

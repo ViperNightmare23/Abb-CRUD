@@ -3,6 +3,7 @@ console.log('May Node be with you')
 const express = require('express');
 const bodyParser= require('body-parser')
 const app = express()
+var ObjectId = require('mongodb').ObjectID;
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
@@ -79,7 +80,7 @@ app.post('/cambiar_cliente', (req, res) => {
   nombrenuevo=req.body.nuevoname
   console.log(req.body)
   db.collection('clientes').findOneAndUpdate(
-  	{ Nombre: nombreactual }, {
+  	{ _id: ObjectId(nombreactual) }, {
     $set: {
       Nombre: nombrenuevo,
     }
@@ -97,7 +98,7 @@ app.post('/cambiar_estado', (req, res) => {
   nombrenuevos=req.body.nuevoestado
   console.log(req.body)
   db.collection('productos').findOneAndUpdate(
-    { Estado: nombreactuals }, {
+    { _id: ObjectId(nombreactuals) }, {
     $set: {
       Estado: nombrenuevos,
     }

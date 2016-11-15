@@ -10,7 +10,7 @@
 <ul class="clientes">
   <% for(var i=0; i<clientes.length; i++) {%>
     <li class="cliente">
-      <span><%= clientes[i].Nombre %> <a href="/cambiar_cliente?&<%= clientes[i].Nombre %>"> editar </a></span>
+      <span><%= clientes[i].Nombre %> <a href="/cambiar_cliente?&<%= clientes[i]._id %>"> editar </a></span>
     </li>
   <% } %>
 </ul>
